@@ -1,0 +1,14 @@
+# Ignore API Keys and Real Configs
+config.yaml
+.env
+
+# Ignore Heavy Database Volumes
+n8n-data/
+qdrant-data/
+open-webui-data/
+dockge-data/
+
+# Ignore Python Virtual Environments
+venv/
+__pycache__/
+*.pyc
