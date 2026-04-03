@@ -1,0 +1,31 @@
+version: '3.8'
+services:
+  litellm:
+    image: ghcr.io/berriai/litellm:main-latest
+    ports: ["4000:4000"]
+    volumes: ["./config.yaml:/app/config.yaml"]
+    command: [ "--config", "/app/config.yaml" ]
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    ports: ["3000:8080"]
+    extra_hosts: ["host.docker.internal:host-gateway"]
+    volumes: ["open-webui-data:/app/backend/data"]
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    ports: ["5678:5678"]
+    volumes: ["n8n-data:/home/node/.n8n"]
+  qdrant:
+    image: qdrant/qdrant
+    ports: ["6333:6333"]
+    volumes: ["qdrant-data:/qdrant/storage"]
+  dockge:
+    image: louislam/dockge:1
+    ports: ["5001:5001"]
+    volumes:
+      - "//var/run/docker.sock:/var/run/docker.sock"
+      - "./dockge-data:/app/data"
+      - "./:/opt/stacks/big-jay"
+volumes:
+  open-webui-data:
+  n8n-data:
+  qdrant-data:

@@ -1,0 +1,3 @@
+@echo off
+echo Requesting Administrator rights...
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "& {Start-Process PowerShell -ArgumentList '-NoProfile -ExecutionPolicy Bypass -File ""%~dp0Install-AI-OS.ps1""' -Verb RunAs}"
