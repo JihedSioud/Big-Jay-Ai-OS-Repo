@@ -2,6 +2,9 @@
 title Big-Jay OS Launcher
 color 0B
 
+:: CRITICAL FIX: This line forces Windows to look in the exact folder where this .bat file lives.
+cd /d "%~dp0"
+
 echo Verifying system dependencies...
 python -c "import customtkinter" 2>nul || pip install customtkinter -q
 python -c "import gradio" 2>nul || pip install gradio -q
@@ -24,7 +27,7 @@ if "%choice%"=="2" goto web
 if "%choice%"=="3" goto both
 
 :desktop
-start pythonw big_jay_gui.py
+start python big_jay_gui.py
 exit
 
 :web
@@ -32,8 +35,8 @@ start python big_jay_web.py
 exit
 
 :both
-echo Starting Web Server in the background...
-start /B pythonw big_jay_web.py
+echo Starting Web Server...
+start python big_jay_web.py
 timeout /t 2 /nobreak >nul
-start pythonw big_jay_gui.py
+start python big_jay_gui.py
 exit
