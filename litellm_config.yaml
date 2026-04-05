@@ -1,0 +1,26 @@
+model_list:
+  # --- DIRECT ACCESS MODELS (For Method 1: Specialists) ---
+  - model_name: ollama/llama3
+    litellm_params:
+      model: ollama/llama3
+      api_base: "http://host.docker.internal:11434" # Points to your local Ollama
+  
+  - model_name: ollama/deepseek-coder
+    litellm_params:
+      model: ollama/deepseek-coder
+      api_base: "http://host.docker.internal:11434"
+
+  # --- DYNAMIC ROUTER (For Method 3: Context & Cost) ---
+  # When a script asks for "big-jay-router", LiteLLM takes over and cascades through this list.
+  - model_name: big-jay-router
+    litellm_params:
+      model: ollama/llama3
+      api_base: "http://host.docker.internal:11434"
+  - model_name: big-jay-router
+    litellm_params:
+      model: ollama/mistral-nemo # Fallback if Llama crashes or prompt is too big
+      api_base: "http://host.docker.internal:11434"
+
+router_settings:
+  routing_strategy: usage-based-routing
+  enable_pre_call_checks: true # Checks context window limits before sending
