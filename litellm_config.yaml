@@ -1,5 +1,25 @@
 model_list:
   # --- DIRECT ACCESS MODELS (For Method 1: Specialists) ---
+  - model_name: local-coder
+    litellm_params:
+      model: ollama/qwen2.5-coder:32b
+      api_base: http://host.docker.internal:11434
+  
+  - model_name: claude-4.6
+    litellm_params:
+      model: openrouter/anthropic/claude-4.6
+      api_key: YOUR_OPENROUTER_KEY_HERE
+
+  - model_name: gemini-3.1-pro-thinking
+    litellm_params:
+      model: gemini/gemini-3.1-pro-preview
+      api_key: YOUR_GOOGLE_KEY_HERE
+
+  - model_name: glm-5-agent
+    litellm_params:
+      model: openrouter/zhipu/glm-5
+      api_key: YOUR_OPENROUTER_KEY_HERE
+
   - model_name: ollama/llama3
     litellm_params:
       model: ollama/llama3
@@ -8,6 +28,11 @@ model_list:
   - model_name: ollama/deepseek-coder
     litellm_params:
       model: ollama/deepseek-coder
+      api_base: "http://host.docker.internal:11434"
+
+  - model_name: ollama/mistral-nemo
+    litellm_params:
+      model: ollama/mistral-nemo
       api_base: "http://host.docker.internal:11434"
 
   # --- DYNAMIC ROUTER (For Method 3: Context & Cost) ---
