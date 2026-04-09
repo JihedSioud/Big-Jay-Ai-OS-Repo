@@ -1,1 +1,5 @@
 crewai langgraph langchain litellm geopandas rasterio shapely pandas pyogrio customtkinter
+chromadb
+sentence-transformers
+langchain-text-splitters
+watchdog
